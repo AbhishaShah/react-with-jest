@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import api from './Api';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      answer:null  
+    }
+  }
+  ask = () =>api().then(answer => this.setState({answer}));
+
+  render(){
+    return (
+      <div className="App">
+        <div className="question">
+          <input type="text" />
+          <button type="submit" onClick={this.ask}>Ask any question to me!</button>
+        </div>
+        {this.state.answer && (
+          <div className="answer">
+          <h1>{this.state.answer.answer}</h1>
+          <img src={this.state.answer.image} alt=""></img>
+          </div>
+        )}
+       
+      </div>
+    );
+    
+  }
 }
+  
+
 
 export default App;
