@@ -8,7 +8,7 @@ This project is a `create-react-app` project. To set it up, just execute followi
 
 ```
 npm install
-nm start
+npm start
 ```
 
 And to run tests:
